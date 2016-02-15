@@ -32,6 +32,9 @@ depending on the variable `indent-tabs-mode'."
   (setq-local indent-line-function 'jj-indent-line)
   (add-hook 'post-self-insert-hook 'jj-post-self-insert-function)
 
+  ;; code formatting
+  (add-hook 'completion-at-point-functions 'jj-fixup-whitespace)
+
   ;; comments
   (setq-local comment-start "//")
   (setq-local comment-end "")
@@ -85,6 +88,13 @@ depending on the variable `indent-tabs-mode'."
     (when (> old-column old-indentation)
       (goto-char (+ point (- new-indentation old-indentation))))))
 
+(defun jj-fixup-whitespace ()
+  (when (looking-at "\\s-")
+    '(lambda () 
+       (fixup-whitespace)
+       (when (looking-at "\\s-\\S-")
+         (forward-char 1)))))
+
 (defun jj-fill-paragraph (&optional JUSTIFY)
   ;; only fill when inside comment
   (when (nth 4 (syntax-ppss))
@@ -108,6 +118,7 @@ depending on the variable `indent-tabs-mode'."
   (let ((syntax-table (syntax-table)))
     (modify-syntax-entry ?/ ". 124" syntax-table)
     (modify-syntax-entry ?* ". 23b" syntax-table)
+    (modify-syntax-entry ?' "\"" syntax-table)
     (modify-syntax-entry ?\n ">" syntax-table)))
 
 (defun jj-setup-font-lock-defaults ()
@@ -137,4 +148,5 @@ depending on the variable `indent-tabs-mode'."
             nil nil 
             ((?/ . ". 124")
              (?* . ". 23b")
+             (?' . "\"")
              (?\n . ">"))))))
