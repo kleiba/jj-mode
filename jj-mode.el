@@ -124,9 +124,10 @@ depending on the variable `indent-tabs-mode'."
 (defun jj-setup-font-lock-defaults ()
   (let ((keywords           '("abstract" "assert" "break" "case" "catch" "class" "continue"
                               "default" "do" "extends" "else" "enum" "final" "finally" "if" 
-                              "implements" "import" "interface" "for" "new" "package" "private" 
-                              "protected" "public" "return" "static" "synchronized" "switch" 
-                              "this" "throw" "throws" "try" "volatile" "while"))
+                              "implements" "import" "interface" "instanceof" "for" "new" 
+                              "package" "private" "protected" "public" "return" "static" 
+                              "synchronized" "switch" "this" "throw" "throws" "try" "volatile" 
+                              "while"))
         (built-in-types     '("boolean" "byte" "char" "double" "float" "int" "long" "void"))
         (built-in-constants '("true" "false" "null"))
         (package-or-import   "\\<\\(?:package\\|import\\)\\s-+\\([^;]+\\);")
