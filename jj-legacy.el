@@ -43,30 +43,30 @@
 	      '(("java.lang.Exception"
 		 . (progn (insert 
 			   (concat 
-			    (make-string c-basic-offset ?\ )
+			    (make-string jj-indentation-offset ?\ )
 			    "public " class "() {}\n"
-			    (make-string c-basic-offset ?\ )
+			    (make-string jj-indentation-offset ?\ )
 			    "public " class "(String message) {\n"
-			    (make-string (* 2 c-basic-offset) ?\ )
+			    (make-string (* 2 jj-indentation-offset) ?\ )
 			    "super(message);\n"
-			    (make-string c-basic-offset ?\ )
+			    (make-string jj-indentation-offset ?\ )
 			    "}\n\n"
-			    (make-string c-basic-offset ?\ )
+			    (make-string jj-indentation-offset ?\ )
 			    "public " class "(Throwable cause) {\n"
-			    (make-string (* 2 c-basic-offset) ?\ )
+			    (make-string (* 2 jj-indentation-offset) ?\ )
 			    "super(cause);\n"
-			    (make-string c-basic-offset ?\ )
+			    (make-string jj-indentation-offset ?\ )
 			    "}\n"))))
 		("java.util.EventObject"
 		 . (progn (insert
 			   (concat
-			    (make-string c-basic-offset ?\ )
+			    (make-string jj-indentation-offset ?\ )
                             "private static final long serialVersionUID = 1;\n\n"
-			    (make-string c-basic-offset ?\ )
+			    (make-string jj-indentation-offset ?\ )
 			    "public " class "(Object source) {\n"
-			    (make-string (* 2 c-basic-offset) ?\ )
+			    (make-string (* 2 jj-indentation-offset) ?\ )
 			    "super(source);\n"
-			    (make-string c-basic-offset ?\ )
+			    (make-string jj-indentation-offset ?\ )
 			    "}\n"))))))
       (insert "\n"))
 	       		
