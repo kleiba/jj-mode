@@ -108,6 +108,7 @@ depending on the variable `indent-tabs-mode'."
   (define-key jj-mode-map (kbd "C-c C-p") 'jj-insert-system-out-err-println)
   (define-key jj-mode-map (kbd "<f12>") 'jj-build-project))
 
+;; FIXME: use electric-indent-chars instead!
 (defun jj-post-self-insert-function ()
   (when (eq major-mode 'jj-mode)
     (let ((char last-command-event))
@@ -118,7 +119,7 @@ depending on the variable `indent-tabs-mode'."
   (let ((syntax-table (syntax-table)))
     (modify-syntax-entry ?/ ". 124" syntax-table)
     (modify-syntax-entry ?* ". 23b" syntax-table)
-    (modify-syntax-entry ?' "\"" syntax-table)
+    ;(modify-syntax-entry ?' "\"" syntax-table) -> problem for scan-sexps
     (modify-syntax-entry ?\n ">" syntax-table)))
 
 (defun jj-setup-font-lock-defaults ()
@@ -134,7 +135,7 @@ depending on the variable `indent-tabs-mode'."
         (package-names       "\\<\\(\\(?:[a-z]+\\.\\)*[a-z]+\\.\\)[A-Z]")
         (class-name-regex    "\\<[A-Z]+[a-z0-9][A-Za-z0-9]+\\>")
         (function-name-regex "\\<\\(\\(?:_+\\|[a-z]\\)[A-Za-z_]+[0-9_]*\\)\\( *(\\)")
-        (variable-name-regex "\\<\\(?:_+\\|[a-z]\\)[A-Za-z_]*[0-9_]*\\>")
+        (variable-name-regex "\\<\\(?:_+\\|[a-z]\\)[A-Za-z0-9_]*\\>")
         (constant-name-regex "\\<[A-Z_]+\\>"))
     (setq font-lock-defaults 
           `((,(cons (regexp-opt keywords 'words) 'font-lock-keyword-face)
